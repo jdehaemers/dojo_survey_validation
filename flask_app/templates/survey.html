@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="container d-flex flex-column bg-dark text-white mt-4 p-4" style="width:500px">
+        <h1 style='color:goldenrod; margin:30px 0 10px 0'>Dojo Survey</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <p class='mb-3 text-danger'><em>{{ message }} </em></p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/process" method="POST" class='d-flex flex-column'>
+            <label for="name" class='mt-2'>Name:</label>
+            <input type="text" name='name' class='form-control'>
+            <label for="location" class='mt-2'>Location: </label>
+            <input type="text" name='location' class='form-control'>
+            <label for="language" class='mt-2'>Favorite langauge:</label>
+            <select name='language' class='form-control'>
+                {% for language in languages %}
+                    <option value={{ language }}> {{ language }} </option>
+                {% endfor %}
+            </select>
+            <label for="comment" class='mt-2'>Comment (optional):</label>
+            <input type="text" name='comment' class='form-control'>
+            <input type="submit" value='Submit' style='color:black; font-weight:bold; background-color:goldenrod' class='w-25 p-1 mt-3 mb-4'>
+        </form>
+    </div>
+</body>
+</html>

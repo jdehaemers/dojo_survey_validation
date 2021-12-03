@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Survey Results</title>
+</head>
+<body>
+    <div class="container d-flex flex-column bg-dark text-white mt-4 p-4" style="width:600px">
+        <h3 style='color:goldenrod; margin:30px 0 10px 0'>Submitted Information</h3>
+        <table class='table-dark table-striped'>
+            {% for field in fields %}
+            <tr>
+                <td class='p-2'>{{ field }}</td>
+                <td class='p-2'>{{ session[field] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="/"><button link='/' class='w-25 p-1 mt-3 mb-4'>Go Back</button></form>
+    </div>
+</body>
+</html>
